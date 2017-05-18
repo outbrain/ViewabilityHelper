@@ -15,7 +15,7 @@ gulp.task('build', () => {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(uglify({preserveComments:'license'}))
+    .pipe(uglify())
     .pipe(gulp.dest('dist'));
 });
 
