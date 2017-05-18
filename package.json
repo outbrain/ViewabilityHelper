@@ -1,0 +1,22 @@
+{
+  "name": "viewability-helper",
+  "version": "1.0.1",
+  "description": "Lightweight cross-browser library that enables you to create a watcher for a given element, and get back a callback when it has entered the viewport",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Liron Zluf",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-uglify": "^2.1.2"
+  }
+}
