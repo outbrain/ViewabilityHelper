@@ -5,17 +5,46 @@
 
 Lightweight cross-browser library that enables you to create a watcher for a given element, and get back a callback when it has entered the viewport
 
-It uses Intersection Observer API if available, and if not, it calculates it by itself.
+It uses [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API "Intersection Observer API") if available, and if not, it calculates it by itself.
 
 Not working when Intersection Observer is not supported and the script is running inside an iframe.
  
-Written in ES6 and compiled to ES2015 using Babel.
+Written in ES6 and compiled to ES2015 using [Babel](https://babeljs.io "Babel").
 
 # Install
 
 ```js
 npm install --save viewability-helper
 ```
+
+# Usage
+
+```js
+// Create a new observer for an element with a callback function (options is an optional argument)
+var myObserver = new ViewabilityHelper(element, callback, options);
+// Fire in the hole!
+myObserver.observe();
+
+myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element number 1']});
+}
+```
+
+
+# Options
+
+**callbackParams** (Array) - List of parameters passed to the callback function
+
+**intersectPercentage** (String) - For Intersection Observer API
+
+**scrollDimmer** (Integer) - Interval for triggering element viewability watch (msec)
+
+**unobserve** (Boolean) - Should the observer keep observing the element after first viewability event or not
+
+**rootMargin** (String) - For Intersection Observer API, The root element margin
+
+**threshold** (Array) - For Intersection Observer API, List of intersection ratio thresholds of the element with the viewport
+
+
 
 # Contribute
 
