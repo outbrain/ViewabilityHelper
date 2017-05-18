@@ -26,7 +26,7 @@ var myObserver = new ViewabilityHelper(element, callback, options);
 myObserver.observe();
 
 myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element number 1']});
-}
+
 ```
 
 
