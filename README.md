@@ -20,11 +20,12 @@ npm install --save viewability-helper
 # Usage
 
 ```js
-// Create a new observer for an element with a callback function (options is an optional argument)
-var myObserver = new ViewabilityHelper(element, callback, options);
+// Create a new observer for an element with a callback function
+var myObserver = new ViewabilityHelper(element, callback);
 // Fire in the hole!
 myObserver.observe();
 
+// Example with options object
 myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element number 1']});
 
 ```
@@ -34,7 +35,7 @@ myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element
 
 **callbackParams** (Array) - List of parameters passed to the callback function
 
-**intersectPercentage** (String) - For Intersection Observer API
+**intersectPercentage** (String) - Intersection percentage, ex: "0", "0.2" etc..
 
 **scrollDimmer** (Integer) - Interval for triggering element viewability watch (msec)
 
