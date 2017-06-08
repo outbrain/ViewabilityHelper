@@ -7,6 +7,8 @@ Lightweight cross-browser library that enables you to create a watcher for a giv
 
 It uses [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API "Intersection Observer API") if available, and if not, it calculates it by itself.
 
+Browser support for the Intersection Observer API can be found [here](http://caniuse.com/#search=intersectionobserver "here").
+
 Not working when Intersection Observer is not supported and the script is running inside an iframe.
  
 Written in ES6 and compiled to ES2015 using [Babel](https://babeljs.io "Babel").
@@ -20,11 +22,12 @@ npm install --save viewability-helper
 # Usage
 
 ```js
-// Create a new observer for an element with a callback function (options is an optional argument)
-var myObserver = new ViewabilityHelper(element, callback, options);
+// Create a new observer for an element with a callback function
+var myObserver = new ViewabilityHelper(element, callback);
 // Fire in the hole!
 myObserver.observe();
 
+// Example with options object
 myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element number 1']});
 
 ```
@@ -34,7 +37,7 @@ myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element
 
 **callbackParams** (Array) - List of parameters passed to the callback function
 
-**intersectPercentage** (String) - For Intersection Observer API
+**intersectPercentage** (String) - Intersection percentage, ex: "0", "0.2" etc..
 
 **scrollDimmer** (Integer) - Interval for triggering element viewability watch (msec)
 
