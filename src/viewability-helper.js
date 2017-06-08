@@ -18,12 +18,19 @@
   window['ViewabilityHelper'] = class {
 
     constructor(element, callback, options) {
+      // The element to watch
       this._element = element;
+      // Callback function
       this._callback = callback;
+      // Position Calculation Object
       this.posCalcObj = null;
+      // Flag if element is in view
       this.elementIsViewed = false;
+      // Dimmer flag for scroll
       this.posScrollLock = false;
+      // Feature flag for the intersection observer API
       this.hasIntersectionObserverSupport = (typeof (window['IntersectionObserver']) === 'function');
+      // options object
       this.options = {
         'callbackParams': [],
         'rootMargin': '0px',
@@ -33,6 +40,7 @@
         'threshold': [1]
       };
 
+      // merge options with argument options
       for (let key in options) {
         if (options.hasOwnProperty(key)) {
           this.options[key] = options[key];
@@ -40,6 +48,9 @@
       }
     }
 
+    /**
+     * Callback function for scroll event
+     */
     windowScrolled() {
       if (!this.posScrollLock) {
         this.searchForExposedElement();
@@ -50,6 +61,9 @@
       }
     }
 
+    /**
+     * Searches for the element in the viewport
+     */
     searchForExposedElement() {
       let isInsidePos = this.posCalcObj.isInViewport(this._element, this.options['intersectPercentage']); // Take the closeness status of the element
       if (isInsidePos) {
@@ -66,6 +80,9 @@
       }
     }
 
+    /**
+     * Observes an element using the Intersection Observer API
+     */
     observeElement() {
       const options = {
           rootMargin: this.options['rootMargin'],
@@ -75,6 +92,11 @@
       observer.observe(this._element);
     }
 
+    /**
+     * Intersection Observer Callback
+     * @param entries
+     * @param observer
+     */
     observerCallback(entries, observer) {
       if (entries && entries[0] && entries[0]['intersectionRatio'] > this.options['intersectPercentage']) {
         this._callback.apply(this, this.options['callbackParams']);
@@ -87,6 +109,10 @@
       }
     }
 
+    /**
+     * Start Observing an element
+     * Way of observing the element decided using the feature flag
+     */
     observe() {
       if (this.hasIntersectionObserverSupport) {
         this.observeElement();
@@ -137,6 +163,9 @@
 
     }
 
+    /**
+     * Finds the user viewport size
+     */
     setViewPortSizeGlobal() {
       let isStdBrowser, isIE, isOldIE, result;
 
@@ -171,6 +200,12 @@
       return this.viewPortSize;
     }
 
+    /**
+     * Determines if an element is in the viewport or not
+     * @param ele
+     * @param percentage
+     * @returns {boolean}
+     */
     isInViewport(ele, percentage) {
       if (!ele || percentage < 0 || percentage > 100) {
         return false;
