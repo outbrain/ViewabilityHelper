@@ -1,10 +1,13 @@
-var webpack = require('webpack');
-var path = require('path');
-var libraryName = 'viewability-helper';
-var outputFile = libraryName + '.js';
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var env = process.env.WEBPACK_ENV;
-var plugins = [];
+/* global __dirname, require, module*/
+
+const webpack = require('webpack');
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const path = require('path');
+const env  = require('yargs').argv.env; // use --env with webpack 2
+
+let libraryName = 'viewability-helper';
+
+let plugins = [], outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
@@ -13,7 +16,7 @@ if (env === 'build') {
   outputFile = libraryName + '.js';
 }
 
-var config = {
+const config = {
   entry: __dirname + '/src/index.js',
   devtool: 'source-map',
   output: {
@@ -24,22 +27,22 @@ var config = {
     umdNamedDefine: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/
       },
       {
         test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
+    modules: [path.resolve('./src')],
+    extensions: ['.json', '.js']
   },
   plugins: plugins
 };

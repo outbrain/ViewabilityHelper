@@ -4,11 +4,13 @@
         "jsx": true,
         "modules": true
     },
+
     "env": {
         "browser": true,
         "es6": true,
         "node": true
     },
+
     "globals": {
         "document": false,
         "escape": false,
@@ -21,10 +23,13 @@
         "expect": true,
         "sinon": true
     },
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
-    },
+
+    "parser": "babel-eslint",
+
+    "plugins": [
+
+    ],
+
     "rules": {
     }
 }
