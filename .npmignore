@@ -44,3 +44,4 @@ webpack.config.js
 .eslintrc
 .babelrc
 src
+.idea
