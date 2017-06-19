@@ -96,7 +96,7 @@ class PositionCalculation {
 
 }
 
-export default class ViewabilityHelper {
+export class ViewabilityHelper {
 
   constructor(element, callback, options) {
     // The element to watch
