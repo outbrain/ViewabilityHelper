@@ -115,7 +115,7 @@ export class ViewabilityHelper {
       this.observeElement();
     } else {
       this.posCalcObj = new PositionCalculation();
-      window['ViewabilityHelper'].Helpers.addDomEvent(window, 'scroll', this.windowScrolled);
+      DomHelper.addDomEvent(window, 'scroll', this.windowScrolled);
       this.windowScrolled();
     }
   }
