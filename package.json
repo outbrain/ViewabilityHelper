@@ -2,10 +2,11 @@
   "name": "viewability-helper",
   "version": "1.0.13",
   "description": "Lightweight cross-browser library that enables you to create a watcher for a given element, and get back a callback when it has entered the viewport",
-  "main": "./src/viewability-helper.js",
+  "main": "./lib/viewability-helper.min.js",
   "scripts": {
     "build": "webpack --env build",
-    "dev": "webpack --progress --colors --watch --env dev"
+    "dev": "webpack --progress --colors --watch --env dev",
+    "prepublish": "webpack --env build"
   },
   "author": "Liron Zluf",
   "license": "MIT",
