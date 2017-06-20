@@ -8,6 +8,22 @@
     "dev": "webpack --progress --colors --watch --env dev",
     "prepublish": "webpack --env build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outbrain/ViewabilityHelper/dynamic-truncator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/outbrain/ViewabilityHelper/issues"
+  },
+  "homepage": "https://github.com/outbrain/ViewabilityHelper#readme",
+  "keywords": [
+    "javascript",
+    "viewability",
+    "helper",
+    "intersection",
+    "observer",
+    "intersectionobserver"
+  ],
   "author": "Liron Zluf",
   "license": "MIT",
   "devDependencies": {
