@@ -56,12 +56,14 @@ myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element
 
 # Contribute
 
+Please first fork this repository, make your changes and then create a pull request.
+
 Start by 
 ```js
 npm install
 ```
 
-And then run with
+And then build it with
 ```js
-npm start
+npm run dev
 ```
