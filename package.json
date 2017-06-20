@@ -1,6 +1,6 @@
 {
   "name": "viewability-helper",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Lightweight cross-browser library that enables you to create a watcher for a given element, and get back a callback when it has entered the viewport",
   "main": "./lib/viewability-helper.min.js",
   "scripts": {
