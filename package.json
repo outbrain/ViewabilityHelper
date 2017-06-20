@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/outbrain/ViewabilityHelper/dynamic-truncator.git"
+    "url": "git+https://github.com/outbrain/ViewabilityHelper.git"
   },
   "bugs": {
     "url": "https://github.com/outbrain/ViewabilityHelper/issues"
