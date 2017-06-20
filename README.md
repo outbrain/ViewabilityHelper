@@ -23,9 +23,9 @@ npm install --save viewability-helper
 
 ```js
 // import the module
-import * as ViewabilityHelper from 'viewability-helper';
+import {ViewabilityHelper} from 'viewability-helper';
 // -or-
-var ViewabilityHelper = require('viewability-helper');
+const ViewabilityHelper = require('viewability-helper').ViewabilityHelper;
 
 // Create a new observer for an element with a callback function
 var myObserver = new ViewabilityHelper(element, callback);
