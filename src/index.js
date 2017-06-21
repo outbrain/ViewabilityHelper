@@ -153,7 +153,7 @@ export class ViewabilityHelper {
         this.elementIsViewed = true;
         this._callback.apply(this, this.options['callbackParams']);
         if (this.options['unobserve']) {
-          this.Helpers.removeDomEvent(window, 'scroll', this.windowScrolled);
+          DomHelper.removeDomEvent(window, 'scroll', this.windowScrolled);
           delete this.posCalcObj;
         }
       }
