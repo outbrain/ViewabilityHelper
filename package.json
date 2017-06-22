@@ -6,7 +6,8 @@
   "types": "./lib/viewability-helper.d.ts",
   "scripts": {
     "build": "webpack --env build",
-    "dev": "webpack --progress --colors --watch --env dev"
+    "dev": "webpack --progress --colors --watch --env dev",
+    "prepublish": "webpack --env build"
   },
   "repository": {
     "type": "git",
