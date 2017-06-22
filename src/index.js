@@ -104,7 +104,7 @@ export class ViewabilityHelper {
     // Callback function
     this._callback = callback;
     // Position Calculation Object
-    this.posCalcObj = null;
+    this.posCalcObj = {};
     // Flag if element is in view
     this.elementIsViewed = false;
     // Dimmer flag for scroll
@@ -146,6 +146,9 @@ export class ViewabilityHelper {
    * Searches for the element in the viewport
    */
   searchForExposedElement() {
+    if (!this.posCalcObj) {
+      this.posCalcObj = new PositionCalculation();
+    }
     let isInsidePos = this.posCalcObj.isInViewport(this._element, this.options['intersectPercentage']);
     // Take the closeness status of the element
     if (isInsidePos) {
@@ -200,7 +203,7 @@ export class ViewabilityHelper {
       this.observeElement();
     } else {
       this.posCalcObj = new PositionCalculation();
-      DomHelper.addDomEvent(window, 'scroll', this.windowScrolled);
+      DomHelper.addDomEvent(window, 'scroll', this.windowScrolled.bind(this));
       this.windowScrolled();
     }
   }
