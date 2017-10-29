@@ -30,9 +30,7 @@ class PositionCalculation {
     this.setViewPortSizeGlobal();
 
     // Only when window resize call the setters
-    DomHelper.addDomEvent(window, 'resize', () => {
-      this.setViewPortSizeGlobal();
-    });
+    DomHelper.addDomEvent(window, 'resize', this.setViewPortSizeGlobal);
 
   }
 
@@ -48,7 +46,7 @@ class PositionCalculation {
     };
 
     // the more standard compliant browsers
-    isStdBrowser = window.innerWidth !== undefined;
+    isStdBrowser = typeof window.innerWidth !== 'undefined';
     // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
     isIE = (document.documentElement !== undefined) && (document.documentElement.clientWidth !== undefined) && (document.documentElement.clientWidth !== 0);
     isOldIE = (isStdBrowser === false) && (isIE === false); // older versions of IE
@@ -104,15 +102,15 @@ export class ViewabilityHelper {
     // Callback function
     this._callback = callback;
     // Position Calculation Object
-    this.posCalcObj = {};
+    this._posCalcObj = {};
     // Flag if element is in view
-    this.elementIsViewed = false;
+    this._elementIsViewed = false;
     // Dimmer flag for scroll
-    this.posScrollLock = false;
+    this._posScrollLock = false;
     // Feature flag for the intersection observer API
-    this.hasIntersectionObserverSupport = (typeof (window['IntersectionObserver']) === 'function');
-    // options object
-    this.options = {
+    this._hasIntersectionObserverSupport = (typeof (window['IntersectionObserver']) === 'function');
+    // _options object
+    this._options = {
       'callbackParams': [],
       'rootMargin': '0px',
       'intersectPercentage': 0,
@@ -121,24 +119,20 @@ export class ViewabilityHelper {
       'threshold': [1]
     };
 
-    // merge options with argument options
-    for (let key in options) {
-      if (options.hasOwnProperty(key)) {
-        this.options[key] = options[key];
-      }
-    }
+    // merge _options with argument _options
+    this._options = {...this._options, ...options};
   }
 
   /**
    * Callback function for scroll event
    */
   windowScrolled() {
-    if (!this.posScrollLock) {
+    if (!this._posScrollLock) {
       this.searchForExposedElement();
       setTimeout(() => {
-        this.posScrollLock = false;
-      }, this.options['scrollDimmer']);
-      this.posScrollLock = true;
+        this._posScrollLock = false;
+      }, this._options['scrollDimmer']);
+      this._posScrollLock = true;
     }
   }
 
@@ -146,22 +140,22 @@ export class ViewabilityHelper {
    * Searches for the element in the viewport
    */
   searchForExposedElement() {
-    if (!this.posCalcObj) {
-      this.posCalcObj = new PositionCalculation();
+    if (!this._posCalcObj) {
+      this._posCalcObj = new PositionCalculation();
     }
-    let isInsidePos = this.posCalcObj.isInViewport(this._element, this.options['intersectPercentage']);
+    let isInsidePos = this._posCalcObj.isInViewport(this._element, this._options['intersectPercentage']);
     // Take the closeness status of the element
     if (isInsidePos) {
-      if (!this.elementIsViewed) {
-        this.elementIsViewed = true;
-        this._callback.apply(this, this.options['callbackParams']);
-        if (this.options['unobserve']) {
+      if (!this._elementIsViewed) {
+        this._elementIsViewed = true;
+        this._callback.apply(this, this._options['callbackParams']);
+        if (this._options['unobserve']) {
           DomHelper.removeDomEvent(window, 'scroll', this.windowScrolled);
-          delete this.posCalcObj;
+          delete this._posCalcObj;
         }
       }
     } else {
-      this.elementIsViewed = false;
+      this._elementIsViewed = false;
     }
   }
 
@@ -170,8 +164,8 @@ export class ViewabilityHelper {
    */
   observeElement() {
     const options = {
-        rootMargin: this.options['rootMargin'],
-        threshold: this.options['threshold']
+        rootMargin: this._options['rootMargin'],
+        threshold: this._options['threshold']
       },
       observer = new window['IntersectionObserver'](this.observerCallback.bind(this), options);
     observer.observe(this._element);
@@ -183,9 +177,9 @@ export class ViewabilityHelper {
    * @param observer
    */
   observerCallback(entries, observer) {
-    if (entries && entries[0] && entries[0]['intersectionRatio'] > this.options['intersectPercentage']) {
-      this._callback.apply(this, this.options['callbackParams']);
-      if (this.options['unobserve']) {
+    if (entries && entries[0] && entries[0]['intersectionRatio'] > this._options['intersectPercentage']) {
+      this._callback.apply(this, this._options['callbackParams']);
+      if (this._options['unobserve']) {
         // Stop observing intersections for the current widget
         observer['unobserve'](entries[0]['target']);
         // Stop observing threshold
@@ -199,10 +193,10 @@ export class ViewabilityHelper {
    * Way of observing the element decided using the feature flag
    */
   observe() {
-    if (this.hasIntersectionObserverSupport) {
+    if (this._hasIntersectionObserverSupport) {
       this.observeElement();
     } else {
-      this.posCalcObj = new PositionCalculation();
+      this._posCalcObj = new PositionCalculation();
       DomHelper.addDomEvent(window, 'scroll', this.windowScrolled.bind(this));
       this.windowScrolled();
     }

@@ -11,7 +11,7 @@ Browser support for the Intersection Observer API can be found [here](http://can
 
 Not working when Intersection Observer is not supported and the script is running inside an iframe.
  
-Written in ES6 and compiled to ES2015 using [Babel](https://babeljs.io "Babel").
+Written in ES6 and compiled to ES5 using [Babel](https://babeljs.io "Babel").
 
 # Install
 
@@ -32,7 +32,7 @@ var myObserver = new ViewabilityHelper(element, callback);
 // Fire in the hole!
 myObserver.observe();
 
-// Example with options object
+_options
 myObserver = new ViewabilityHelper(element, callback, {callbackParams: ['Element number 1']});
 
 ```
