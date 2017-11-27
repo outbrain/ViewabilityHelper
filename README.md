@@ -23,7 +23,7 @@ npm install --save viewability-helper
 
 ```js
 // import the module
-import * as ViewabilityHelper from 'viewability-helper';
+import ViewabilityHelper from 'viewability-helper';
 // -or-
 const ViewabilityHelper = require('viewability-helper');
 

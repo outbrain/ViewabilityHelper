@@ -1,4 +1,4 @@
-const ViewabilityHelper = require('../lib/viewability-helper.min');
+import ViewabilityHelper from '../lib/viewability-helper';
 
 const myObserver = new ViewabilityHelper(document.getElementById('cube'), () => {
     console.log('Observed');
