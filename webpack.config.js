@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const env  = require('yargs').argv.env; // use --env with webpack 2
 
-let libraryName = 'viewability-helper';
+const libraryName = 'viewability-helper';
 
 let plugins = [], outputFile;
 

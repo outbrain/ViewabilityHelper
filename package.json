@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
-    "prepublish": "webpack --env build"
+    "prepublish": "webpack --env build && webpack --config=webpack.examples.js"
   },
   "repository": {
     "type": "git",
