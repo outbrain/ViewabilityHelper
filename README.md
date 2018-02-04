@@ -5,13 +5,10 @@
 
 Lightweight cross-browser library that enables you to create a watcher for a given element, and get back a callback when it has entered the viewport
 
-It uses [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API "Intersection Observer API") if available, and if not, it calculates it by itself.
-
+Viewability Helper uses [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API "Intersection Observer API") if available. If it's not, the library makes the calculations itself.
 Browser support for the Intersection Observer API can be found [here](http://caniuse.com/#search=intersectionobserver "here").
 
-Not working when Intersection Observer is not supported and the script is running inside an iframe.
- 
-Written in ES6 and compiled to ES5 using [Babel](https://babeljs.io "Babel").
+*Note:* Not working when Intersection Observer is not supported and the script is running inside an iframe.
 
 # Install
 
